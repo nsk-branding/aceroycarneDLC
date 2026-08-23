@@ -1,15 +1,22 @@
+/**
+ * engine.js - Motor principal del juego visual novel
+ */
 const Engine = {
     currentScene: null,
     currentStepIndex: 0,
 
     init() {
         console.log("Motor de Sueños de Acero y Carne iniciado.");
+        if (typeof SCENES === "undefined") {
+            console.error("SCENES no está definido. Asegúrate de que scenes.js esté cargado.");
+            return;
+        }
         this.loadScene("act1_scene1");
     },
 
     loadScene(sceneKey) {
         if (!SCENES[sceneKey]) {
-            console.error(`La escena '${sceneKey}' no existe.`);
+            console.error(`La escena '${sceneKey}' no existe en scenes.js`);
             return;
         }
         this.currentScene = SCENES[sceneKey];
@@ -26,14 +33,17 @@ const Engine = {
         
         choicesContainer.innerHTML = "";
 
-        let displayText = step.text;
-        if (step.speaker && CONFIG.characters[step.speaker]) {
+        let displayText = step.text || "";
+        if (step.speaker && CONFIG && CONFIG.characters && CONFIG.characters[step.speaker]) {
             const charData = CONFIG.characters[step.speaker];
             if (charData.name !== "") {
                 displayText = `[${charData.name}]: ${step.text}`;
             }
         }
-        textElement.textContent = displayText;
+        
+        if (textElement) {
+            textElement.textContent = displayText;
+        }
 
         if (step.action) {
             step.action();
