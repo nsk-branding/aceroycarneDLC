@@ -1,14 +1,20 @@
 /**
- * main.js - Inicializador directo del juego
+ * main.js - Arranque seguro
  */
 window.addEventListener("DOMContentLoaded", () => {
-    console.log("Iniciando Sueños de Acero y Carne de forma directa...");
+    console.log("DOM completamente cargado. Arrancando motor...");
     
-    // Arranque directo del motor sin validaciones intermedias
-    if (typeof Engine !== "undefined") {
-        Engine.init();
-    } else {
-        console.error("El motor (Engine) no está disponible.");
-        document.getElementById("dialogue-text").textContent = "Error crítico: El motor no se pudo inicializar.";
+    try {
+        if (typeof Engine !== "undefined") {
+            Engine.init();
+        } else {
+            throw new Error("El objeto Engine no está definido.");
+        }
+    } catch (error) {
+        console.error("Error al iniciar la aplicación:", error);
+        const textElement = document.getElementById("dialogue-text");
+        if (textElement) {
+            textElement.textContent = "Error al iniciar: " + error.message;
+        }
     }
 });

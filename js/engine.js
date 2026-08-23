@@ -1,14 +1,14 @@
 /**
- * engine.js - Motor principal del juego visual novel
+ * engine.js - Motor principal blindado
  */
 const Engine = {
     currentScene: null,
     currentStepIndex: 0,
 
     init() {
-        console.log("Motor de Sueños de Acero y Carne iniciado.");
+        console.log("Motor inicializado correctamente.");
         if (typeof SCENES === "undefined") {
-            console.error("SCENES no está definido. Asegúrate de que scenes.js esté cargado.");
+            this.showError("Error crítico: SCENES no está definido en scenes.js");
             return;
         }
         this.loadScene("act1_scene1");
@@ -16,7 +16,7 @@ const Engine = {
 
     loadScene(sceneKey) {
         if (!SCENES[sceneKey]) {
-            console.error(`La escena '${sceneKey}' no existe en scenes.js`);
+            this.showError(`Error: La escena '${sceneKey}' no existe.`);
             return;
         }
         this.currentScene = SCENES[sceneKey];
@@ -31,21 +31,24 @@ const Engine = {
         const textElement = document.getElementById("dialogue-text");
         const choicesContainer = document.getElementById("choices-container");
         
+        if (!textElement || !choicesContainer) {
+            console.error("No se encontraron los elementos del DOM (dialogue-text o choices-container).");
+            return;
+        }
+
         choicesContainer.innerHTML = "";
 
         let displayText = step.text || "";
-        if (step.speaker && CONFIG && CONFIG.characters && CONFIG.characters[step.speaker]) {
+        if (step.speaker && typeof CONFIG !== "undefined" && CONFIG.characters && CONFIG.characters[step.speaker]) {
             const charData = CONFIG.characters[step.speaker];
             if (charData.name !== "") {
                 displayText = `[${charData.name}]: ${step.text}`;
             }
         }
         
-        if (textElement) {
-            textElement.textContent = displayText;
-        }
+        textElement.textContent = displayText;
 
-        if (step.action) {
+        if (step.action && typeof step.action === "function") {
             step.action();
         }
 
@@ -55,7 +58,7 @@ const Engine = {
                 btn.className = "choice-btn";
                 btn.textContent = choice.text;
                 btn.onclick = () => {
-                    if (choice.action) choice.action();
+                    if (choice.action && typeof choice.action === "function") choice.action();
                     if (choice.nextScene) {
                         this.loadScene(choice.nextScene);
                     } else {
@@ -82,6 +85,14 @@ const Engine = {
                 }
             };
             choicesContainer.appendChild(btn);
+        }
+    },
+
+    showError(msg) {
+        console.error(msg);
+        const textElement = document.getElementById("dialogue-text");
+        if (textElement) {
+            textElement.textContent = msg;
         }
     }
 };
