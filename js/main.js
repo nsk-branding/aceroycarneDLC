@@ -1,17 +1,14 @@
 /**
- * main.js - Punto de entrada principal
+ * main.js - Inicializador directo del juego
  */
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("Iniciando Sueños de Acero y Carne...");
-
-    // Verificamos que existan el Motor y las Escenas antes de arrancar
-    if (typeof Engine !== "undefined" && typeof SCENES !== "undefined") {
+window.addEventListener("DOMContentLoaded", () => {
+    console.log("Iniciando Sueños de Acero y Carne de forma directa...");
+    
+    // Arranque directo del motor sin validaciones intermedias
+    if (typeof Engine !== "undefined") {
         Engine.init();
     } else {
-        console.error("Error crítico: Faltan módulos del motor o guion.");
-        const textElement = document.getElementById("dialogue-text");
-        if (textElement) {
-            textElement.textContent = "Error: Faltan archivos de script en la carpeta js/. Revisa que engine.js y scenes.js estén cargados.";
-        }
+        console.error("El motor (Engine) no está disponible.");
+        document.getElementById("dialogue-text").textContent = "Error crítico: El motor no se pudo inicializar.";
     }
 });
