@@ -1,0 +1,39 @@
+#ui-header h1 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.choice-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.choice-btn.paragon {
+    border-color: #0077ff;
+    color: #4da6ff;
+}
+
+.choice-btn.paragon:hover {
+    background-color: #0077ff;
+    color: #ffffff;
+}
+
+.choice-btn.renegade {
+    border-color: #ff3300;
+    color: #ff6644;
+}
+
+.choice-btn.renegade:hover {
+    background-color: #ff3300;
+    color: #ffffff;
+}
+
+#stats-hud {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #8ab4f8;
+    margin-bottom: 10px;
+    padding: 0 5px;
+}

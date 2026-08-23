@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sueños de Acero y Carne - Mass Effect Web</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+    <div id="game-container">
+        <!-- Pantalla de juego / Interfaz -->
+        <header id="ui-header">
+            <h1>Sueños de Acero y Carne</h1>
+        </header>
+        
+        <main id="scene-container">
+            <div id="dialogue-box">
+                <p id="dialogue-text">Cargando sistema...</p>
+            </div>
+            <div id="choices-container">
+                <!-- Los botones de opciones se inyectarán aquí -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts (orden estricto de dependencias) -->
+    <script src="js/config.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/scenes.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

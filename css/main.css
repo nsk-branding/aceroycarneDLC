@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0b0f19;
+    color: #c0d8ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#game-container {
+    width: 90%;
+    max-width: 900px;
+    height: 80vh;
+    background-color: #111a2e;
+    border: 2px solid #00d2ff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+    background-size: cover;
+    background-position: center;
+}
+
+#ui-header {
+    background-color: #00d2ff;
+    color: #0b0f19;
+    padding: 10px 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#scene-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgba(11, 15, 25, 0.85);
+}
+
+#dialogue-box {
+    background-color: rgba(5, 10, 20, 0.9);
+    border-left: 4px solid #00d2ff;
+    padding: 20px;
+    min-height: 120px;
+    font-size: 1.1rem;
+    border-radius: 4px;
+}
+
+#choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choice-btn {
+    background-color: #1a2b4c;
+    color: #00d2ff;
+    border: 1px solid #00d2ff;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.choice-btn:hover {
+    background-color: #00d2ff;
+    color: #0b0f19;
+}
